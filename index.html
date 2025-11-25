@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supreme Chicken</title>
+    <style>
+        :root {
+            --dark-blue: #003366;
+            --white: #ffffff;
+            --dark-bg: #1a1a1a;
+            --dark-text: #e6e6e6;
+            --button-blue: #007bff;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--white);
+            color: #000;
+            transition: 0.3s;
+        }
+
+        .dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        header {
+            background-color: var(--dark-blue);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header img {
+            height: 40px;
+            width: 40px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+            color: var(--white);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            background-color: var(--white);
+        }
+
+        nav a, nav button.contact-btn, nav button.search-btn {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid var(--button-blue);
+            background-color: var(--button-blue);
+            color: white;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav button.contact-btn:hover, nav button.search-btn:hover {
+            opacity: 0.9;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .dark-mode .card {
+            background-color: #2a2a2a;
+            border-color: #444;
+        }
+
+        button {
+            background-color: var(--button-blue);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            margin-top: 40px;
+        }
+
+        .qty-input {
+            width: 60px;
+            padding: 5px;
+            margin: 10px 0;
+        }
+
+        .whatsapp-btn, .facebook-btn {
+            position: fixed;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-btn {
+            bottom: 20px;
+        }
+
+        .facebook-btn {
+            bottom: 80px;
+            background-color: #1877F2;
+        }
+
+        #darkToggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--button-blue);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #backBtn {
+            position: fixed;
+            bottom: 70px;
+            left: 20px;
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .search-input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="broiler-logo.png" alt="Supreme Chicken Logo" />
+        <h1>Supreme Chicken</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <button class="contact-btn" onclick="scrollToContact()">Contact Us</button>
+        <input type="text" class="search-input" id="searchBox" placeholder="Search products...">
+        <button class="search-btn" onclick="searchProducts()">Search</button>
+    </nav>
+
+    <section class="hero" id="home">
+        <h2>Fresh & Healthy Broiler Chickens</h2>
+        <p>Your trusted source for quality chickens at affordable prices.</p>
+        <p><strong>Location:</strong> Malawi, Lilongwe, Area 25</p>
+        <p><strong>Free Delivery:</strong> We offer free delivery around Lilongwe!</p>
+        <p><strong>Payments:</strong> Airtel Money (0997926766) or Cash</p>
+        <p><strong>Business Hours:</strong> 24hrs, Monday to Sunday</p>
+    </section>
+
+    <section class="products" id="products">
+        <div class="card">
+            <h3>Broiler Meat</h3>
+            <p>Price Options: MWK 18,000 • 19,000 • 20,000</p>
+            <input class="qty-input" type="number" min="1" value="1" />
+            <button onclick="addToCart('Broiler Meat')">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <h3>Dressed Broilers</h3>
+            <p>Price: MWK 25,000 each</p>
+            <p><strong>Bulk Order:</strong> Minimum 5 broilers</p>
+            <input class="qty-input" type="number" min="1" value="1" />
+            <button onclick="addToCart('Dressed Broilers')">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <h3>Consultancy & Training</h3>
+            <p>Professional guidance for broiler farming.</p>
+            <button>Learn More</button>
+        </div>
+
+        <div class="card">
+            <h3>Chicken Manure</h3>
+            <p>Organic manure for gardens & farms.</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="card">
+            <h3>Contract Growing Services</h3>
+            <p>We grow chickens for you under contract.</p>
+            <button>Contact Us</button>
+        </div>
+
+        <div class="card">
+            <h3>Broilers Processing Services</h3>
+            <p>Slaughtering & processing services available.</p>
+            <button>Book Service</button>
+        </div>
+
+        <div class="card">
+            <h3>Feed Mixing</h3>
+            <p>Custom high‑quality feed mixing.</p>
+            <button>Order Feed</button>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>Contact: 0997926766</p>
+        <p>Email: mayapagift@gmail.com</p>
+        <p>Location: Lilongwe, Area 25</p>
+        <p>Free delivery available around Lilongwe</p>
+        <p>Payments: Airtel Money 0997926766 or Cash</p>
+        <p>Business Hours: 24hrs (Mon–Sun)</p>
+        <p>Supreme Chicken © 2025</p>
+    </footer>
+
+    <a class="whatsapp-btn" href="https://wa.me/265997926766" target="_blank">💬</a>
+    <a class="facebook-btn" href="https://facebook.com/supremechicken" target="_blank">f</a>
+
+    <button id="darkToggle">Dark Mode</button>
+    <button id="backBtn" onclick="goBack()">Back</button>
+
+    <script>
+        const toggle = document.getElementById('darkToggle');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        function addToCart(item) {
+            alert(item + " added to cart!");
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchBox').value.toLowerCase();
+            const products = document.querySelectorAll('.products .card');
+            products.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if(text.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
